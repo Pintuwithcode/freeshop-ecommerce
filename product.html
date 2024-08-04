@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    .sidebar-open {
+      width: 40%;
+    }
+    .sidebar-closed {
+      width: 0;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div id="navbar">
+      <!-- first nav -->
+      <div class="flex justify-between text-center p-1 font-md bg-black mr-1 ml-1 text-white">
+        <p class="text-center mt-1">E-Commerce Website</p>
+        <div class="size-max">
+          <a href="log-in.html" class="border border-blue-300 mr-1 bg-black text-white hover:bg-white hover:text-black rounded p-1">Log In</a>
+        </div>
+      </div>
+      <!-- first nav end -->
+      <!-- second nav -->
+      <div class="flex justify-between p-2 bg-white items-center">
+        <div class="flex items-center">
+          <img
+            class="ml-10 h-[50px] w-[50px] rounded-full"
+            src="https://yt3.ggpht.com/h8nv5Pkjst3BRP3856_owygj2TiueC1T1LdR5865XU7Fn_aVgTXaTLe18-eBC_OptsZYfLz5yA=s108-c-k-c0x00ffffff-no-rj"
+            alt=""
+          />
+          <h1 class="hidden sm:block font-bold ml-2">ToShoping</h1>
+        </div>
+        <!-- slide menu start -->
+        <section>
+          <div id="hamburger" onclick="toggleSidebar()" class="md:hidden relative top-4 right-0 text-3xl cursor-pointer z-50">☰</div>
+          <div id="sidebar" class="fixed top-0 left-0 h-full bg-blue-500 text-white overflow-x-hidden transition-all duration-500 sidebar-closed">
+            <a href="javascript:void(0)" class="absolute top-4 right-6 text-4xl" onclick="toggleSidebar()">×</a>
+            <nav class="mt-16">
+              <a href="home.html" class="block py-2 px-4 text-xl hover:bg-blue-700">Home</a>
+              <a href="about.html" class="block py-2 px-4 text-xl hover:bg-blue-700">About</a>
+              <a href="product.html" class="block py-2 px-4 text-xl hover:bg-blue-700">Product</a>
+              <a href="contact.html" class="block py-2 px-4 text-xl hover:bg-blue-600">Contact</a>
+            </nav>
+          </div>
+          <div id="main-content" class="ml-4 p-4">
+        </section>
+        <!-- slide menu end -->
+        <div class="hidden md:flex md:gap-20 lg:gap-20 text-lg">
+          <a id="hm-link" href="home.html" class="bg-black hover:bg-blue-700 text-white rounded-lg pl-2 pr-2">Home</a>
+          <a class="hover:bg-blue-700 bg-black text-white rounded-lg pl-2 pr-2" id="ab-link" href="about.html">About</a>
+          <a class="hover:bg-blue-700 bg-black text-white rounded-lg pl-2 pr-2" id="pd-link" href="product.html">Product</a>
+          <a class="hover:bg-blue-700 bg-black text-white rounded-lg pl-2 pr-2" id="ct-link" href="contact.html">Contact</a>
+        </div>
+        <button id="card-btn" class="hidden lg:flex font-bold border-2 mr-1 border-blue-500 p-2 ml-0 rounded-s-full hover:bg-white h-1/5 hover:text-black bg-black text-white">Technologycal</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popup for Order Confirmation -->
+  <div id="popup" class="popup">
+    <div class="popup-content bg-gray-300">
+      <button id="close-popup" class="text-xl font-bold float-right cursor-pointer">×</button>
+      <h2 class="text-xl font-semibold mb-4">Confirm Your Order</h2>
+      <form id="order-form">
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium">Name</label>
+          <input type="text" id="name" class="w-full border rounded p-2" required />
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium">Email</label>
+          <input type="email" id="email" class="w-full border rounded p-2" required />
+        </div>
+        <div class="mb-4">
+          <label for="address" class="block text-sm font-medium">Address</label>
+          <input type="text" id="address" class="w-full border rounded p-2" required />
+        </div>
+        <button type="submit" id="order-now" class="bg-black text-white py-2 px-4 rounded hover:bg-blue-600">Order Now</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Product Section -->
+  <div class="bg-gray-100">
+    <div class="container mx-auto p-6">
+      <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Cards will be dynamically injected here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="product.js" > 
+
+  </script>
+  </body>
